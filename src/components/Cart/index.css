@@ -3,6 +3,14 @@
   justify-content: center;
   min-height: 75vh;
 }
+.remove-btn {
+  color: #0b69ff;
+  font-size: 20px;
+  font-weight: 700;
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+}
 
 @media screen and (min-width: 768px) {
   .cart-container {

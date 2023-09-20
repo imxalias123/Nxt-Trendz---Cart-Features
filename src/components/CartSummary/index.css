@@ -1,1 +1,21 @@
 /* Write your CSS here */
+.cartSummary-container {
+  align-self: flex-end;
+  font-family: 'roboto';
+}
+.checkout-btn {
+  background-color: #0b69ff;
+  color: #fff;
+  border-radius: 8px;
+  width: 250px;
+  height: 40px;
+  border: none;
+}
+.span {
+  color: #171f46;
+  font-size: 30px;
+}
+.card-heading {
+  color: #616e7c;
+  font-size: 20px;
+}

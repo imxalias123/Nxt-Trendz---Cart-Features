@@ -18,11 +18,75 @@ class App extends Component {
   }
 
   //   TODO: Add your code for remove all cart items, increment cart item quantity, decrement cart item quantity, remove cart item
-  /* removeCartItem = () => {} */
+
+  removeCartItem = id => {
+    const {cartList} = this.state
+    const afterRemoving = cartList.filter(each => each.id !== id)
+    this.setState({
+      cartList: afterRemoving,
+    })
+  }
 
   addCartItem = product => {
-    this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+    console.log(product)
     //   TODO: Update the code here to implement addCartItem
+    const {cartList} = this.state
+    const cartProduct = cartList.find(eachItem => eachItem.id === product.id)
+    console.log(cartProduct)
+
+    if (cartProduct) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(eachItem => {
+          if (eachItem.id === cartProduct.id) {
+            const Quantity = eachItem.quantity + product.quantity
+            return {...eachItem, quantity: Quantity}
+          }
+          return eachItem
+        }),
+      }))
+    } else {
+      this.setState({
+        cartList: [...cartList, product],
+      })
+    }
+    // this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+  }
+
+  incrementCartItemQuantity = id => {
+    this.setState(prevState => ({
+      cartList: prevState.cartList.map(eachCartItem => {
+        if (eachCartItem.id === id) {
+          const updatedQuantity = eachCartItem.quantity + 1
+          return {...eachCartItem, quantity: updatedQuantity}
+        }
+        return {...eachCartItem}
+      }),
+    }))
+  }
+
+  decrementCartItemQuantity = id => {
+    const {cartList} = this.state
+    const cartItem = cartList.find(eachCartItem => eachCartItem.id === id)
+
+    if (cartItem.quantity > 1) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (eachCartItem.id === id) {
+            const updatedData = eachCartItem.quantity - 1
+            return {...eachCartItem, quantity: updatedData}
+          }
+          return eachCartItem
+        }),
+      }))
+    } else {
+      this.removeCartItem(id)
+    }
+  }
+
+  removeAllCartItems = () => {
+    this.setState({
+      cartList: [],
+    })
   }
 
   render() {
@@ -33,13 +97,11 @@ class App extends Component {
         value={{
           cartList,
           addCartItem: this.addCartItem,
-          /*
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
           removeCartItem: this.removeCartItem,
 
           removeAllCartItems: this.removeAllCartItems,
-          incrementCartItemQuantity: this.incrementCartItemQuantity,
-          decrementCartItemQuantity: this.decrementCartItemQuantity,
-          */
         }}
       >
         <Switch>

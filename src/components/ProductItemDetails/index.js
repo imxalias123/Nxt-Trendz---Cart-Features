@@ -129,14 +129,7 @@ class ProductItemDetails extends Component {
         const onClickAddToCart = () => {
           addCartItem({...productData, quantity})
         }
-        /*
-        const onDecrementQuantity = () => {
-          incrementCartItemQuantity()
-        }
-        const onIncrementQuantity = () => {
-          decrementCartItemQuantity()
-        }
-        */
+
         return (
           <div className="product-details-success-view">
             <div className="product-details-container">
