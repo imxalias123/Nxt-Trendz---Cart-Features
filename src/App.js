@@ -71,11 +71,8 @@ class App extends Component {
     if (cartItem.quantity > 1) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
-          if (eachCartItem.id === id) {
-            const updatedData = eachCartItem.quantity - 1
-            return {...eachCartItem, quantity: updatedData}
-          }
-          return eachCartItem
+          const updatedData = eachCartItem.quantity - 1
+          return {...eachCartItem, quantity: updatedData}
         }),
       }))
     } else {
